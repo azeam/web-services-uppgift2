@@ -4,6 +4,7 @@ import 'package:auth/helpers/token_helper.dart';
 import 'package:auth/objects/product.dart';
 import 'package:auth/products.dart';
 import 'package:auth/variables/colors.dart';
+import 'package:auth/variables/strings.dart';
 import 'package:auth/widgets/snackbar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,7 @@ class NewProduct extends StatefulWidget {
 class _NewProductState extends State<NewProduct> {
   final formKey = GlobalKey<FormState>();
   Product product = Product(name: "", description: "", price: 0);
-  Uri url = Uri.parse("http://10.0.2.2:8080/product/create");
+  Uri url = Uri.parse(baseUrl + "/product/create");
 
   Future save() async {
     var response = await http.put(url,
@@ -136,9 +137,7 @@ class _NewProductState extends State<NewProduct> {
                           borderRadius: BorderRadius.circular(20),
                           color: CustomColors.dark,
                           border: new Border.all(
-                              color: CustomColors.bright,
-                              width: 1.0,
-                              style: BorderStyle.solid),
+                              color: CustomColors.bright, width: 1.5),
                         ),
                         child: TextButton(
                           onPressed: () {

@@ -3,6 +3,7 @@ import "dart:convert";
 import 'package:auth/helpers/token_helper.dart';
 import 'package:auth/new_product.dart';
 import 'package:auth/variables/colors.dart';
+import 'package:auth/variables/strings.dart';
 import 'package:auth/widgets/snackbar.dart';
 import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
@@ -20,9 +21,9 @@ class Products extends StatefulWidget {
 class _ProductsState extends State<Products> {
   int _selectedList = 0;
 
-  Uri urlAll = Uri.parse("http://10.0.2.2:8080/product/all");
-  Uri urlFavorites = Uri.parse("http://10.0.2.2:8080/product/favorites");
-  Uri urlAddFavorite = Uri.parse("http://10.0.2.2:8080/product/add-favorite");
+  Uri urlAll = Uri.parse(baseUrl + "/product/all");
+  Uri urlFavorites = Uri.parse(baseUrl + "/product/favorites");
+  Uri urlAddFavorite = Uri.parse(baseUrl + "/product/add-favorite");
 
   Future<List<Product>> fetchProduct() async {
     final response = await http.get(_selectedList == 0 ? urlAll : urlFavorites,
@@ -80,19 +81,25 @@ class _ProductsState extends State<Products> {
                             ? Icon(Icons.add_box)
                             : Icon(Icons.favorite),
                         onPressed: () {
-                          addFavorite(product.name);
+                          if (_selectedList == 0) addFavorite(product.name);
                         },
                       ));
                 });
           }),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-              context, CupertinoPageRoute(builder: (context) => NewProduct()));
-        },
-        child: const Icon(Icons.library_add, color: CustomColors.bright),
-        backgroundColor: CustomColors.dark,
-      ),
+      floatingActionButton: _selectedList == 0
+          ? FloatingActionButton.extended(
+              onPressed: () {
+                Navigator.push(context,
+                    CupertinoPageRoute(builder: (context) => NewProduct()));
+              },
+              icon: const Icon(Icons.library_add, color: CustomColors.bright),
+              backgroundColor: CustomColors.dark,
+              label: Text("ADD PRODUCT",
+                  style: Theme.of(context).textTheme.button),
+              shape: StadiumBorder(
+                  side: BorderSide(color: CustomColors.bright, width: 1)))
+          : null,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
@@ -105,7 +112,8 @@ class _ProductsState extends State<Products> {
           ),
         ],
         currentIndex: _selectedList,
-        selectedItemColor: Colors.amber[800],
+        selectedItemColor: CustomColors.orange,
+        backgroundColor: CustomColors.dark,
         onTap: _onMenuChanged,
       ),
     );

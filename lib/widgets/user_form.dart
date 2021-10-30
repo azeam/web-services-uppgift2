@@ -77,7 +77,8 @@ Widget userForm(
             : SizedBox(
                 height: 50,
               ),
-        Container(
+        InkWell(
+            child: Container(
           height: 50,
           width: 250,
           decoration: BoxDecoration(
@@ -85,7 +86,7 @@ Widget userForm(
             color: CustomColors.dark,
             border: new Border.all(
                 color: CustomColors.bright,
-                width: 1.0,
+                width: 1.5,
                 style: BorderStyle.solid),
           ),
           child: TextButton(
@@ -99,7 +100,7 @@ Widget userForm(
               style: TextStyle(color: CustomColors.bright),
             ),
           ),
-        ),
+        )),
         TextButton(
             onPressed: () {
               Navigator.push(

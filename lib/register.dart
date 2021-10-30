@@ -2,6 +2,7 @@ import "dart:convert";
 
 import 'package:auth/login.dart';
 import 'package:auth/objects/user.dart';
+import 'package:auth/variables/strings.dart';
 import 'package:auth/widgets/user_form.dart';
 import 'package:auth/widgets/snackbar.dart';
 import "package:flutter/material.dart";
@@ -17,7 +18,7 @@ class Register extends StatefulWidget {
 class _RegisterState extends State<Register> {
   final formKey = GlobalKey<FormState>();
   User user = User("", "");
-  Uri url = Uri.parse("http://10.0.2.2:8080/user/register");
+  Uri url = Uri.parse(baseUrl + "/user/register");
 
   Future save() async {
     var response = await http.put(url,
