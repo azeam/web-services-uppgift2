@@ -84,7 +84,7 @@ Widget userForm(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
             color: CustomColors.dark,
-            border: new Border.all(
+            border: Border.all(
                 color: CustomColors.bright,
                 width: 1.5,
                 style: BorderStyle.solid),

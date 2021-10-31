@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:auth/helpers/token_helper.dart';
 import 'package:auth/podos/user.dart';
 import 'package:auth/products.dart';

@@ -10,3 +10,8 @@ getToken() async {
   String token = prefs.getString("token")!;
   return token;
 }
+
+deleteToken() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  prefs.remove("token");
+}

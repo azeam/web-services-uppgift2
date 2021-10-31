@@ -5,6 +5,7 @@ import 'package:auth/new_product.dart';
 import 'package:auth/podos/product.dart';
 import 'package:auth/variables/colors.dart';
 import 'package:auth/variables/strings.dart';
+import 'package:auth/widgets/menu_drawer.dart';
 import 'package:auth/widgets/snackbar.dart';
 import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
@@ -33,8 +34,13 @@ class _ProductsState extends State<Products> {
           productList.map((i) => Product.fromJson(i)).toList();
       return products;
     } else {
-      throw Exception("Failed to load products");
+      Navigator.push(
+          context,
+          CupertinoPageRoute(
+            builder: (context) => Products(),
+          ));
     }
+    throw Exception("Failed to load products");
   }
 
   Future addFavorite(String name) async {
@@ -59,6 +65,7 @@ class _ProductsState extends State<Products> {
       appBar: AppBar(
         title: Text(_selectedList == 0 ? "Product list" : "Favorites list"),
       ),
+      drawer: menuDrawer(context),
       body: FutureBuilder<List<Product>>(
           future: fetchProduct(),
           builder: (context, snapshot) {
