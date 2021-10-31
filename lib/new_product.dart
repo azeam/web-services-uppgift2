@@ -1,7 +1,8 @@
 import 'dart:convert';
 
+import 'package:auth/helpers/number_helper.dart';
 import 'package:auth/helpers/token_helper.dart';
-import 'package:auth/objects/product.dart';
+import 'package:auth/podos/product.dart';
 import 'package:auth/products.dart';
 import 'package:auth/variables/colors.dart';
 import 'package:auth/variables/strings.dart';
@@ -9,8 +10,6 @@ import 'package:auth/widgets/snackbar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-
-import 'helpers/number_helper.dart';
 
 class NewProduct extends StatefulWidget {
   NewProduct({Key? key}) : super(key: key);

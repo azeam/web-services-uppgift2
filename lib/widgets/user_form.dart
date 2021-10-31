@@ -1,4 +1,4 @@
-import 'package:auth/objects/user.dart';
+import 'package:auth/podos/user.dart';
 import 'package:auth/variables/colors.dart';
 import 'package:auth/widgets/snackbar.dart';
 import 'package:flutter/cupertino.dart';
@@ -10,7 +10,7 @@ Widget userForm(
   Future Function() save,
   User user,
   GlobalKey<FormState> formKey,
-  StatefulWidget nextPage,
+  StatefulWidget otherPage,
 ) {
   return Padding(
     padding: const EdgeInsets.all(16.0),
@@ -104,7 +104,7 @@ Widget userForm(
         TextButton(
             onPressed: () {
               Navigator.push(
-                  context, CupertinoPageRoute(builder: (context) => nextPage));
+                  context, CupertinoPageRoute(builder: (context) => otherPage));
             },
             child: Text(type == "register"
                 ? "I already have an account"
